@@ -1,0 +1,8 @@
+# tmp stuff may also be worth to put into your $GIT_DIR/info/exclude
+.DS_Store
+*.swp
+.TemporaryItems/
+._.TemporaryItems
+.project
+# netbeans 
+nbproject/
