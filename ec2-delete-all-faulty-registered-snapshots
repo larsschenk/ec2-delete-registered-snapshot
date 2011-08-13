@@ -1,0 +1,13 @@
+# There was a bug in the AWS EBS Snapshot software that causes snapshots to fail under some circumstances.
+# More information about this AWS EBS issue can be found here: http://aws.amazon.com/message/2329B7/
+#
+# These faulty snapshots got the flag "error" instead of completed.
+# I had used these snapshots to create AMIs and so I needed to unregsiter and delete them.
+#
+ec2-describe-snapshots | grep error | awk -F ' ' '{system("./ec2-delete-registered-snapshot " $2) }'
+# 
+# Amazon contributes a "Recovery Snapsho" for those faulty snapshots in error condition. 
+# But I devided to not use them because my AMIs were still based on the faulty snapshots.
+# With this de-activated line, I delete all those 'Recovery' snapshots.
+#
+# ec2-describe-snapshots | grep 'Recovery of snapshot' | awk -F ' ' '{system("ec2-delete-snapshot " $2) }'
