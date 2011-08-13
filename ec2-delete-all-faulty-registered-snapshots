@@ -6,8 +6,8 @@
 #
 ec2-describe-snapshots | grep error | awk -F ' ' '{system("./ec2-delete-registered-snapshot " $2) }'
 # 
-# Amazon contributes a "Recovery Snapsho" for those faulty snapshots in error condition. 
-# But I devided to not use them because my AMIs were still based on the faulty snapshots.
+# Amazon contributes a "Recovery Snapshot" for those faulty snapshots in error condition. 
+# But I decided to not use them because my AMIs were still based on the faulty snapshots.
 # With this de-activated line, I delete all those 'Recovery' snapshots.
 #
 # ec2-describe-snapshots | grep 'Recovery of snapshot' | awk -F ' ' '{system("ec2-delete-snapshot " $2) }'
